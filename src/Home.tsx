@@ -73,7 +73,7 @@ export default function Home(){
           </div>
           <button className="perfumania-btn" onClick={()=>scroll('collection')}>Shop Now</button>
         </div>
-        <div className="fall-sale-image" />
+        <div className="fall-sale-image"><img src="/images/hero-campaign.png" alt="Fall sale" /></div>
       </div>
     </section>
     <section className="perfumania-deals container">
@@ -85,7 +85,7 @@ export default function Home(){
             <p>(Mix & Match, Select Styles)</p>
             <button className="deal-link" onClick={()=>scroll('collection')}>Shop Now</button>
           </div>
-          <div className="deal-image bogo-img" />
+          <div className="deal-image"><img src="/images/hero-perfume.jpg" alt="Bogo perfume" /></div>
         </div>
         <div className="deal-card deal-3for99">
           <div className="deal-content">
@@ -94,7 +94,7 @@ export default function Home(){
             <p>3 Scents for Just $99</p>
             <button className="deal-link" onClick={()=>scroll('collection')}>Shop Now</button>
           </div>
-          <div className="deal-image three-img" />
+          <div className="deal-image"><img src="/images/perfume-amber.jpg" alt="3 for 99" /></div>
         </div>
         <div className="deal-card deal-2for75">
           <div className="deal-content">
@@ -103,7 +103,7 @@ export default function Home(){
             <p>2 Scents For Just $75</p>
             <button className="deal-link" onClick={()=>scroll('collection')}>Shop Now</button>
           </div>
-          <div className="deal-image two-img" />
+          <div className="deal-image"><img src="/images/product-grid.png" alt="2 for 75" /></div>
         </div>
         <div className="deal-card deal-new">
           <div className="deal-content">
@@ -112,7 +112,7 @@ export default function Home(){
             <p>Notez Collection — In-Store and Online</p>
             <button className="deal-link" onClick={()=>scroll('collection')}>Shop Now</button>
           </div>
-          <div className="deal-image new-img" />
+          <div className="deal-image"><img src="/images/hero-campaign.png" alt="New fragrances" /></div>
         </div>
       </div>
     </section>
