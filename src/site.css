@@ -56,3 +56,14 @@
 [dir="ltr"] .fall-sale-text, [dir="ltr"] .deal-content{text-align:left}
 [dir="ltr"] .product-line{text-align:left;direction:ltr}
 [dir="ltr"] .perfumania-topbar-inner{flex-direction:row}
+
+/* ===== 2 RUBANS DÉFILANTS INVERSÉS ===== */
+.marquee{overflow:hidden;white-space:nowrap;background:#111;color:#fff; padding:10px 0; border-top:1px solid #222; border-bottom:1px solid #222}
+.marquee-beauty{background:#F8F0E8;color:#111; border-color:#E8DDD0}
+.marquee-track{display:inline-flex;align-items:center;gap:28px;animation:marquee 22s linear infinite; will-change:transform}
+.marquee-track.reverse{animation-direction:reverse; animation-duration:26s}
+.marquee-track span{font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; white-space:nowrap}
+.marquee-beauty .marquee-track span{color:#111}
+.marquee-perfumes .marquee-track span{color:#fff}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@media(max-width:700px){.marquee-track span{font-size:9px; gap:18px}}
