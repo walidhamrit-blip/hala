@@ -48,12 +48,74 @@ export default function Home(){
   const add=(id:number)=>{setCart(c=>({...c,[id]:(c[id]||0)+1}));setOrderPlaced(false);setSelected(null);setCartOpen(true)}
   const qty=(id:number,delta:number)=>setCart(c=>({...c,[id]:Math.max(0,(c[id]||0)+delta)}))
   const fav=(id:number)=>setFavorites(f=>f.includes(id)?f.filter(x=>x!==id):[...f,id])
-  const card=(p:Product)=><article className="product-card" key={p.id}><div className="product-photo" role="button" tabIndex={0} onClick={()=>setSelected(p)} onKeyDown={e=>{if(e.key==='Enter')setSelected(p)}} aria-label={`تفاصيل ${p.name}`}><div className="product-image" style={{backgroundPosition:positions[p.image]}}/>{p.badge&&<span className="product-badge">{p.badge}</span>}<button className={`favorite-button ${favorites.includes(p.id)?'is-favorite':''}`} aria-label="المفضلة" onClick={e=>{e.stopPropagation();fav(p.id)}}><Heart size={19} strokeWidth={1.5} fill={favorites.includes(p.id)?'currentColor':'none'}/></button><button className="quick-add" onClick={e=>{e.stopPropagation();add(p.id)}}>أضيفي للسلة <Plus size={17}/></button></div><div className="product-info"><span className="product-line">{p.line}</span><button className="product-name" onClick={()=>setSelected(p)}>{p.name}</button><div className="product-bottom"><span className="product-price">{money(p.price)} {p.old&&<del>{money(p.old)}</del>}</span><span className="product-size">{p.size}</span></div></div></article>
+  const card=(p:Product)=><article className="product-card" key={p.id}><div className="product-photo" role="button" tabIndex={0} onClick={()=>setSelected(p)} onKeyDown={e=>{if(e.key==='Enter')setSelected(p)}} aria-label={`تفاصيل ${p.name}`}><div className="product-image" style={{backgroundPosition:positions[p.image]}}/>{p.badge&&<span className="product-badge">{p.badge}</span>}<button className={`favorite-button ${favorites.includes(p.id)?'is-favorite':''}`} aria-label="المفضلة" onClick={e=>{e.stopPropagation();fav(p.id)}}><Heart size={19} strokeWidth={1.5} fill={favorites.includes(p.id)?'currentColor':'none'}/></button><button className="quick-add" onClick={e=>{e.stopPropagation();add(p.id)}}>أضيفي للسلة <Plus size={17}/></button></div><div className="product-info"><span className="product-line">{p.line}</span><button className="product-name" onClick={()=>setSelected(p)}>{p.name}</button><div className="product-badges-row"><span className="badge-shipping">🚚 2 Day Shipping</span>{p.old&&<span className="badge-offer">3 for $99 - Mix & Match</span>}</div><div className="product-bottom"><span className="product-price">{p.old?<><span className="sale">{money(p.price)}</span> <del>{money(p.old)}</del></>:money(p.price)}</span><span className="product-size">{p.size}</span></div></div></article>
   return <div className="site" dir={lang==='ar'?'rtl':'ltr'}>
     <SiteControls data={data} shared={shared} save={save} lang={lang} setLang={setLang}/>
-    <div className="announcement"><Sparkles size={13}/><span>هدية أنيقة مع كل طلب — وشحن مجاني للطلبات فوق ٣٥٠ د.ل</span><Sparkles size={13}/></div>
+    <div className="perfumania-topbar">
+      <div className="perfumania-topbar-inner container">
+        <span className="unlock">Unlock 5% Off on Your Purchase &gt;&gt;</span>
+        <span className="trustpilot">★ ★ ★ ★ ★ 4.7 Excellent on Trustpilot</span>
+        <span className="gift">هدية أنيقة مع كل طلب — شحن مجاني فوق ٣٥٠ د.ل <Sparkles size={12}/></span>
+      </div>
+    </div>
     <header className="header"><div className="header-main container"><div className="header-actions"><button className="icon-button mobile-menu-button" aria-label="القائمة" onClick={()=>setMobileOpen(true)}><Menu size={23}/></button><button className="icon-button" aria-label="بحث" onClick={()=>setSearchOpen(!searchOpen)}><Search size={22}/></button><button className="icon-button desktop-icon" aria-label="حسابي" onClick={()=>setAccountOpen(true)}><UserRound size={21}/></button></div><button className="brand" onClick={()=>{setCategory('الكل');setShowFavorites(false);window.scrollTo({top:0,behavior:'smooth'})}}><span className="brand-name">حلا <span className="brand-flower">✳</span> للعطور</span><span className="brand-sub">HALA PERFUMES</span></button><div className="header-actions left-actions"><button className="icon-button desktop-icon" aria-label="المفضلة" onClick={()=>{setShowFavorites(!showFavorites);setCategory('الكل');scroll('collection')}}><Heart size={22} fill={showFavorites?'currentColor':'none'}/>{favorites.length>0&&<span className="tiny-count">{favorites.length}</span>}</button><button className="icon-button" aria-label="سلة التسوق" onClick={()=>setCartOpen(true)}><ShoppingBag size={22}/><span className="tiny-count">{count}</span></button></div></div><nav className="nav"><div className="nav-inner container"><button onClick={()=>choose('الكل')}>تسوّق الكل</button><button onClick={()=>choose('عطور نسائية')}>عطور نسائية</button><button onClick={()=>choose('عطور رجالية')}>عطور رجالية</button><button onClick={()=>choose('عطور شرقية')}>العطور الشرقية</button><button onClick={()=>choose('مجموعات الهدايا')}>مجموعات الهدايا</button><button onClick={()=>scroll('story')}>قصتنا</button></div></nav>{searchOpen&&<div className="search-panel"><div className="container search-box"><Search size={20}/><input autoFocus placeholder="عن أي عطر تبحث؟" value={search} onChange={e=>setSearch(e.target.value)} onKeyDown={e=>{if(e.key==='Enter'){scroll('collection');setSearchOpen(false)}}}/><button onClick={()=>{setSearchOpen(false);setSearch('')}} aria-label="إغلاق"><X size={20}/></button></div>{search&&<div className="search-hint container"><button onClick={()=>{scroll('collection');setSearchOpen(false)}}>عرض نتائج البحث عن «{search}» <ArrowLeft size={15}/></button></div>}</div>}</header>
     <main><section className="hero"><div className="hero-image"/><div className="hero-content container"><div className="hero-copy"><span className="eyebrow"><span className="eyebrow-line"/> عطور تروي حكايتك</span><h1>{data.heroLine1||'لأن لكل لحظة'}<br/><em>{data.heroLine2||'عطرها الخاص'}</em></h1><p>{data.heroIntro||'اكتشفي عالماً من الروائح الاستثنائية، صُممت لتبقى في الذاكرة وترافق أجمل لحظاتك.'}</p><button className="primary-button" onClick={()=>scroll('collection')}>اكتشفي المجموعة <ArrowLeft size={18}/></button><div className="hero-pagination"><span className="pagination-active"/><span/><span/></div></div></div><div className="hero-vertical">THE ART OF FRAGRANCE · HALA</div></section>
+    {/* ===== PERFUMANIA FALL SALE BANNER ===== */}
+    <section className="perfumania-fall-sale container">
+      <div className="fall-sale-card">
+        <div className="fall-sale-text">
+          <span className="fall-kicker">ONLINE ONLY</span>
+          <h2>Fall Sale</h2>
+          <div className="fall-tiers">
+            <span><b>$10 Off $125</b> Code: FALLSALE10</span>
+            <span><b>$15 Off $175</b> Code: FALLSALE15</span>
+            <span><b>$25 Off $225</b> Code: FALLSALE25</span>
+          </div>
+          <button className="perfumania-btn" onClick={()=>scroll('collection')}>Shop Now</button>
+        </div>
+        <div className="fall-sale-image" />
+      </div>
+    </section>
+    <section className="perfumania-deals container">
+      <div className="deal-grid">
+        <div className="deal-card deal-bogo">
+          <div className="deal-content">
+            <span className="deal-kicker">IN-STORE AND ONLINE</span>
+            <h3>Buy 1, Get 1 50% Off</h3>
+            <p>(Mix & Match, Select Styles)</p>
+            <button className="deal-link" onClick={()=>scroll('collection')}>Shop Now</button>
+          </div>
+          <div className="deal-image bogo-img" />
+        </div>
+        <div className="deal-card deal-3for99">
+          <div className="deal-content">
+            <span className="deal-kicker">In-Store and Online</span>
+            <h3>3 for $99</h3>
+            <p>3 Scents for Just $99</p>
+            <button className="deal-link" onClick={()=>scroll('collection')}>Shop Now</button>
+          </div>
+          <div className="deal-image three-img" />
+        </div>
+        <div className="deal-card deal-2for75">
+          <div className="deal-content">
+            <span className="deal-kicker">ONLINE ONLY</span>
+            <h3>2 FOR $75</h3>
+            <p>2 Scents For Just $75</p>
+            <button className="deal-link" onClick={()=>scroll('collection')}>Shop Now</button>
+          </div>
+          <div className="deal-image two-img" />
+        </div>
+        <div className="deal-card deal-new">
+          <div className="deal-content">
+            <span className="deal-kicker">Just Released!</span>
+            <h3>4 Brand New Fragrances</h3>
+            <p>Notez Collection — In-Store and Online</p>
+            <button className="deal-link" onClick={()=>scroll('collection')}>Shop Now</button>
+          </div>
+          <div className="deal-image new-img" />
+        </div>
+      </div>
+    </section>
     <section className="benefits container"><div className="benefit"><Truck size={26}/><div><strong>شحن مجاني</strong><span>للطلبات فوق ٣٥٠ د.ل</span></div></div><div className="benefit"><Gift size={26}/><div><strong>تغليف يليق بهديتك</strong><span>بكل حب، مع كل طلب</span></div></div><div className="benefit"><PackageCheck size={26}/><div><strong>جودة نثق بها</strong><span>عطور أصيلة بعناية فائقة</span></div></div></section>
     <section className="collection section-space container" id="collection"><div className="section-heading"><div><span className="section-kicker">مختارة لكِ بعناية</span><h2>{showFavorites?'عطورك المفضلة':search?'نتائج البحث':'عطور لا تُنسى'}</h2><p>روائح فريدة، تفاصيل ساحرة، وانطباع يدوم.</p></div><button className="text-link" onClick={()=>{setCategory('الكل');setSearch('');setShowFavorites(false)}}>عرض جميع العطور <ArrowLeft size={18}/></button></div><div className="category-tabs" role="tablist">{categories.map(c=><button key={c} role="tab" aria-selected={category===c&&!showFavorites} className={category===c&&!showFavorites?'selected':''} onClick={()=>{setCategory(c);setShowFavorites(false);setSearch('')}}>{c}</button>)}</div>{visible.length?<div className="product-grid">{visible.slice(0,4).map(card)}</div>:<div className="empty-results"><Search size={30}/><h3>{showFavorites?'لم تضيفي أي عطور للمفضلة بعد':'لم نعثر على عطور مطابقة'}</h3><p>{showFavorites?'اضغطي على رمز القلب بجانب عطرك المفضل ليظهر هنا.':'جرّبي البحث بكلمة أخرى أو تصفّحي المجموعة كاملة.'}</p><button className="outlined-button" onClick={()=>{setSearch('');setShowFavorites(false);setCategory('الكل')}}>تصفّح العطور</button></div>}{visible.length>4&&<button className="more-button" onClick={()=>scroll('all-products')}>اكتشفي المزيد من العطور <ArrowLeft size={18}/></button>}</section>
     <section className="story-section" id="story"><div className="story-photo"><img src="/images/editorial-hijab.png" alt="امرأة محجبة تستمتع بعطر حلا"/></div><div className="story-copy"><div className="story-inner"><span className="section-kicker">من القلب إلى الذاكرة</span><h2>{data.storyLine1||'العطر أكثر من'}<br/><em>{data.storyLine2||'مجرد رائحة'}</em></h2><div className="story-rule"/><p>{data.storyIntro||'نؤمن في حلا بأن العطر لغة لا تحتاج إلى كلمات. كل نفحة صُنعت لتلامس روحك، وكل تركيبة تحكي قصة من الأناقة والجمال والتفاصيل التي لا تُنسى.'}</p><button onClick={()=>scroll('all-products')}>اكتشفي عالم حلا <ArrowLeft size={18}/></button></div></div></section>
