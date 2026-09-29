@@ -47,8 +47,11 @@
 .product-price del{color:#999;font-weight:400;margin-left:6px;font-size:11px}
 
 /* FIX LTR - correct hero text position for EN */
-[dir="ltr"] .hero-content{justify-content:flex-start}
-[dir="ltr"] .hero-copy{margin-right:0;margin-left:4.5%;text-align:left}
+[dir="ltr"] .hero-content{justify-content:flex-start !important; padding-left:5% !important; padding-right:0 !important}
+[dir="ltr"] .hero-copy{margin-right:auto !important;margin-left:0 !important;text-align:left !important; align-items:flex-start !important; width:480px !important; max-width:42% !important}
+[dir="ltr"] .hero h1, [dir="ltr"] .hero p{text-align:left !important; margin-left:0 !important; margin-right:auto !important}
+[dir="ltr"] .hero-image{background-position:75% center !important}
+[dir="ltr"] .eyebrow{justify-content:flex-start !important}
 [dir="ltr"] .hero h1, [dir="ltr"] .hero p{text-align:left}
 [dir="ltr"] .fall-sale-text, [dir="ltr"] .deal-content{text-align:left}
 [dir="ltr"] .product-line{text-align:left;direction:ltr}
