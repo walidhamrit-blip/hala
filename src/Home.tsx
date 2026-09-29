@@ -52,7 +52,7 @@ export default function Home(){
   const add=(id:number)=>{setCart(c=>({...c,[id]:(c[id]||0)+1}));setOrderPlaced(false);setSelected(null);setCartOpen(true)}
   const qty=(id:number,delta:number)=>setCart(c=>({...c,[id]:Math.max(0,(c[id]||0)+delta)}))
   const fav=(id:number)=>setFavorites(f=>f.includes(id)?f.filter(x=>x!==id):[...f,id])
-  const card=(p:Product)=><article className="product-card" key={p.id}><div className="product-photo" role="button" tabIndex={0} onClick={()=>setSelected(p)} onKeyDown={e=>{if(e.key==='Enter')setSelected(p)}} aria-label={`تفاصيل ${p.name}`}><div className="product-image" style={{backgroundPosition:positions[p.image]}}/>{p.badge&&<span className="product-badge">{p.badge}</span>}<button className={`favorite-button ${favorites.includes(p.id)?'is-favorite':''}`} aria-label="المفضلة" onClick={e=>{e.stopPropagation();fav(p.id)}}><Heart size={19} strokeWidth={1.5} fill={favorites.includes(p.id)?'currentColor':'none'}/></button><button className="quick-add" onClick={e=>{e.stopPropagation();add(p.id)}}>أضيفي للسلة <Plus size={17}/></button></div><div className="product-info"><span className="product-line">{p.line}</span><button className="product-name" onClick={()=>setSelected(p)}>{p.name}</button><div className="product-badges-row"><span className="badge-shipping">🚚 2 Day Shipping</span>{p.old&&<span className="badge-offer">3 for $99 - Mix & Match</span>}</div><div className="product-bottom"><span className="product-price">{p.old?<><span className="sale">{money(p.price)}</span> <del>{money(p.old)}</del></>:money(p.price)}</span><span className="product-size">{p.size}</span></div></div></article>
+  const card=(p:Product)=><article className="product-card" key={p.id}><div className="product-photo" role="button" tabIndex={0} onClick={()=>setSelected(p)} onKeyDown={e=>{if(e.key==='Enter')setSelected(p)}} aria-label={`تفاصيل ${p.name}`}><div className="product-image" style={{backgroundPosition:positions[p.image]}}/>{p.badge&&<span className="product-badge">{p.badge}</span>}<button className={`favorite-button ${favorites.includes(p.id)?'is-favorite':''}`} aria-label="المفضلة" onClick={e=>{e.stopPropagation();fav(p.id)}}><Heart size={19} strokeWidth={1.5} fill={favorites.includes(p.id)?'currentColor':'none'}/></button><button className="quick-add" onClick={e=>{e.stopPropagation();add(p.id)}}>أضيفي للسلة <Plus size={17}/></button></div><div className="product-info"><span className="product-line">{p.line}</span><button className="product-name" onClick={()=>setSelected(p)}>{p.name}</button><div className="product-badges-row"><span className="badge-shipping">🚚 2 Day Shipping</span>{p.old&&<span className="badge-offer">3 بـ 99 د.ل - Mix & Match</span>}</div><div className="product-bottom"><span className="product-price">{p.old?<><span className="sale">{money(p.price)}</span> <del>{money(p.old)}</del></>:money(p.price)}</span><span className="product-size">{p.size}</span></div></div></article>
   return <div className="site" dir={lang==='ar'?'rtl':'ltr'}>
     <SiteControls data={data} shared={shared} save={save} lang={lang} setLang={setLang}/>
     <div className="perfumania-topbar">
@@ -77,9 +77,9 @@ export default function Home(){
           <span className="fall-kicker">ONLINE ONLY</span>
           <h2>Fall Sale</h2>
           <div className="fall-tiers">
-            <span><b>$10 Off $125</b> Code: FALLSALE10</span>
-            <span><b>$15 Off $175</b> Code: FALLSALE15</span>
-            <span><b>$25 Off $225</b> Code: FALLSALE25</span>
+            <span><b>10 د.ل خصم على 125 د.ل</b> الكود: FALLSALE10</span>
+            <span><b>15 د.ل خصم على 175 د.ل</b> الكود: FALLSALE15</span>
+            <span><b>25 د.ل خصم على 225 د.ل</b> الكود: FALLSALE25</span>
           </div>
           <button className="perfumania-btn" onClick={()=>scroll('collection')}>Shop Now</button>
         </div>
@@ -91,7 +91,7 @@ export default function Home(){
         <div className="deal-card deal-bogo">
           <div className="deal-content">
             <span className="deal-kicker">IN-STORE AND ONLINE</span>
-            <h3>Buy 1, Get 1 50% Off</h3>
+            <h3>اشتري 1 واحصلي على الثاني بنصف السعر</h3>
             <p>(Mix & Match, Select Styles)</p>
             <button className="deal-link" onClick={()=>scroll('collection')}>Shop Now</button>
           </div>
@@ -100,8 +100,8 @@ export default function Home(){
         <div className="deal-card deal-3for99">
           <div className="deal-content">
             <span className="deal-kicker">In-Store and Online</span>
-            <h3>3 for $99</h3>
-            <p>3 Scents for Just $99</p>
+            <h3>3 بـ 99 د.ل</h3>
+            <p>3 عطور بـ 99 د.ل فقط</p>
             <button className="deal-link" onClick={()=>scroll('collection')}>Shop Now</button>
           </div>
           <div className="deal-image"><img src="/images/perfume-amber.jpg" alt="3 for 99" /></div>
@@ -109,8 +109,8 @@ export default function Home(){
         <div className="deal-card deal-2for75">
           <div className="deal-content">
             <span className="deal-kicker">ONLINE ONLY</span>
-            <h3>2 FOR $75</h3>
-            <p>2 Scents For Just $75</p>
+            <h3>2 بـ 75 د.ل</h3>
+            <p>عطران بـ 75 د.ل فقط</p>
             <button className="deal-link" onClick={()=>scroll('collection')}>Shop Now</button>
           </div>
           <div className="deal-image"><img src="/images/product-grid.png" alt="2 for 75" /></div>
