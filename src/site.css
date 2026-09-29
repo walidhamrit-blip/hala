@@ -45,3 +45,11 @@
 .badge-offer{font-size:9px;font-weight:700;background:#111;color:#fff;padding:2px 5px}
 .product-price .sale{color:#C0392B;font-weight:800}
 .product-price del{color:#999;font-weight:400;margin-left:6px;font-size:11px}
+
+/* FIX LTR - correct hero text position for EN */
+[dir="ltr"] .hero-content{justify-content:flex-start}
+[dir="ltr"] .hero-copy{margin-right:0;margin-left:4.5%;text-align:left}
+[dir="ltr"] .hero h1, [dir="ltr"] .hero p{text-align:left}
+[dir="ltr"] .fall-sale-text, [dir="ltr"] .deal-content{text-align:left}
+[dir="ltr"] .product-line{text-align:left;direction:ltr}
+[dir="ltr"] .perfumania-topbar-inner{flex-direction:row}
